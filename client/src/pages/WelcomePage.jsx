@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const WelcomePage = () => {
   const [data, setData] = useState([]);
@@ -29,6 +30,9 @@ const WelcomePage = () => {
           </div>
         ))}
       </div>
+      <button>
+        <Link to="/message">Leave a message</Link>
+      </button>
     </div>
   );
 };
