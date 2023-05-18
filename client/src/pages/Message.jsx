@@ -20,12 +20,15 @@ const Message = () => {
     setBook((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  // set data to initial values after submiting the form
   const resetForm = () => {
     setBook({
       message: "",
       name: "",
     });
   };
+
+  // add validation for input fields
   const validateForm = () => {
     let err = {};
     if (book.name === "") {
