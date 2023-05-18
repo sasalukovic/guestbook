@@ -19,10 +19,10 @@ const WelcomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="home-container">
       <h1>Guestbook</h1>
       <p>See what people wrote about us and feel free to leave a message</p>
-      <div>
+      <div className="posts">
         {data.map((d) => (
           <div key={d.id}>
             <h2>{d.name}</h2>
@@ -31,7 +31,9 @@ const WelcomePage = () => {
         ))}
       </div>
       <button>
-        <Link to="/message">Leave a message</Link>
+        <Link to="/message" className="link">
+          Leave a message
+        </Link>
       </button>
     </div>
   );
