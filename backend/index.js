@@ -26,6 +26,16 @@ app.get("guestbook", (req, res) => {
   });
 });
 
+app.post("/guestbook", (req, res) => {
+  const q = "INSERT INTO guestbook (`name`, `message`) VALUES (?)";
+  const values = [req.body.name, req.body.message];
+
+  db.query(q, [values], (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
 app.listen(8800, () => {
   console.log("Connected to BE");
 });
