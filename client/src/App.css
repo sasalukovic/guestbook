@@ -55,3 +55,7 @@ button {
 .input-container {
   display: flex;
 }
+
+.error-message {
+  color: red;
+}

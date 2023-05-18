@@ -10,6 +10,7 @@ const Message = () => {
   });
   const [isSubmited, setIsSubmited] = useState(false);
   const [requestStatus, setRequestStatus] = useState(null);
+  const [errMsg, setErrMsg] = useState({});
 
   // comment navigate because of task for disabled button on the page
   // const navigate = useNavigate();
@@ -25,22 +26,39 @@ const Message = () => {
       name: "",
     });
   };
+  const validateForm = () => {
+    let err = {};
+    if (book.name === "") {
+      err.name = "Name required";
+    }
+    if (book.message === "") {
+      err.message = "Message required";
+    }
+
+    setErrMsg(err);
+
+    return Object.keys(err).length < 1;
+  };
 
   const submitForm = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:8800/guestbook", book);
-      setIsSubmited(true);
-      resetForm();
-      console.log(res);
-      if (res.status === 200) {
-        setRequestStatus("Success!");
-      } else {
-        setRequestStatus("Failed");
+
+    const isValidate = validateForm();
+    if (isValidate) {
+      try {
+        const res = await axios.post("http://localhost:8800/guestbook", book);
+        setIsSubmited(true);
+        resetForm();
+        console.log(res);
+        if (res.status === 200) {
+          setRequestStatus("Success!");
+        } else {
+          setRequestStatus("Failed");
+        }
+        // navigate("/");
+      } catch (err) {
+        console.log(err);
       }
-      // navigate("/");
-    } catch (err) {
-      console.log(err);
     }
   };
 
@@ -56,6 +74,7 @@ const Message = () => {
           value={book.message}
           onChange={handleChange}
         />
+        <p className="error-message">{errMsg.message}</p>
       </div>
 
       <div className="input-container">
@@ -66,6 +85,7 @@ const Message = () => {
           value={book.name}
           onChange={handleChange}
         />
+        <p className="error-message">{errMsg.name}</p>
       </div>
 
       <button className={isSubmited ? "hidden" : "visible"}>Post</button>
