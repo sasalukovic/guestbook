@@ -74,8 +74,8 @@ const Message = () => {
           value={book.message}
           onChange={handleChange}
         />
-        <p className="error-message">{errMsg.message}</p>
       </div>
+      <p className="error-message">{errMsg.message}</p>
 
       <div className="input-container">
         <label htmlFor="name">Name:</label>
@@ -85,8 +85,8 @@ const Message = () => {
           value={book.name}
           onChange={handleChange}
         />
-        <p className="error-message">{errMsg.name}</p>
       </div>
+      <p className="error-message">{errMsg.name}</p>
 
       <button className={isSubmited ? "hidden" : "visible"}>Post</button>
       <p>Http status: {requestStatus && <span>{requestStatus}</span>}</p>

@@ -54,6 +54,7 @@ button {
 
 .input-container {
   display: flex;
+  flex-direction: column;
 }
 
 .error-message {
