@@ -17,6 +17,15 @@ const db = mysql2.createConnection({
   database: "test",
 });
 
+app.get("guestbook", (req, res) => {
+  // Using ID(autoincrement) to get last 10 messages
+  const q = "SELECT * FROM guestbook ORDER BY id DESC LIMIT 10";
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
 app.listen(8800, () => {
   console.log("Connected to BE");
 });
