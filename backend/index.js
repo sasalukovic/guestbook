@@ -3,12 +3,15 @@ import express from "express";
 // using mysql2 because of auth problem with DB
 import mysql2 from "mysql2";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 const db = mysql2.createConnection({
   host: "localhost",
