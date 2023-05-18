@@ -90,7 +90,9 @@ const Message = () => {
 
       <button className={isSubmited ? "hidden" : "visible"}>Post</button>
       <p>Http status: {requestStatus && <span>{requestStatus}</span>}</p>
-      <Link to="/">Back to Welcome Page</Link>
+      <Link to="/" className="link">
+        Back to Welcome Page
+      </Link>
     </form>
   );
 };
